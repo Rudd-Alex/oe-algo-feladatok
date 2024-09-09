@@ -10,4 +10,15 @@ namespace OE.ALGA.Paradigmak
     {
         public void Vegrehajtas();
     }
+    class FeladatTarolo<T> where T : IVegrehajthato
+    {
+        T[] tarolo;
+        int n;
+
+        public FeladatTarolo(int meret)
+        {
+            tarolo = new T[meret];
+            n = 0;
+        }
+    }
 }
