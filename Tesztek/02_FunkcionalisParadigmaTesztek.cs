@@ -53,14 +53,20 @@ namespace OE.ALGA.Tesztek
             FeltetelesFeladatTarolo<TesztFeladat> tarolo = new FeltetelesFeladatTarolo<TesztFeladat>(10);
             TesztFeladat a = new TesztFeladat("a");
             TesztFeladat b = new TesztFeladat("b");
+            TesztFeladat c = new TesztFeladat("c");
+            TesztFeladat d = new TesztFeladat("d");
+
             tarolo.Felvesz(a);
             tarolo.Felvesz(b);
+            tarolo.Felvesz(c);
+            tarolo.Felvesz(d);
+
             string nevek = "";
             foreach (TesztFeladat u in tarolo)
             {
                 nevek += u.Azonosito;
             }
-            Assert.AreEqual("ab", nevek);
+            Assert.AreEqual("abcd", nevek);
         }
 
         [TestMethod()]

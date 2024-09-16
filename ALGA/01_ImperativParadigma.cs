@@ -35,7 +35,7 @@ namespace OE.ALGA.Paradigmak
 
         public IEnumerator<T> GetEnumerator()
         {
-            return new FeladatTaroloBejaro<T>(tarolo, tarolo.Length);
+            return new FeladatTaroloBejaro<T>(tarolo, n);
         }
 
         public void MindentVegrehajt()
