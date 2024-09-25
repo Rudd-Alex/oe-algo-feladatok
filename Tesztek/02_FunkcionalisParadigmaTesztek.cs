@@ -139,5 +139,41 @@ namespace OE.ALGA.Tesztek
             }
             Assert.AreEqual("ac", nevek);
         }
+        [TestMethod()]
+        public void FeltetelesBejaroTesztMindFalse() //F3.(b)
+        {
+            FeltetelesFeladatTarolo<TesztFuggoFeladat> tarolo = new FeltetelesFeladatTarolo<TesztFuggoFeladat>(10);
+            tarolo.BejaroFeltetel = (x => x.FuggosegTeljesul);
+            TesztFuggoFeladat a = new TesztFuggoFeladat("a") { Vegrehajthato = false };
+            TesztFuggoFeladat b = new TesztFuggoFeladat("b") { Vegrehajthato = false };
+            TesztFuggoFeladat c = new TesztFuggoFeladat("c") { Vegrehajthato = false };
+            tarolo.Felvesz(a);
+            tarolo.Felvesz(b);
+            tarolo.Felvesz(c);
+            string nevek = "";
+            foreach (TesztFeladat u in tarolo)
+            {
+                nevek += u.Azonosito;
+            }
+            Assert.AreEqual("", nevek);
+        }
+        [TestMethod()]
+        public void FeltetelesBejaroTesztMindTrue() //F3.(b)
+        {
+            FeltetelesFeladatTarolo<TesztFuggoFeladat> tarolo = new FeltetelesFeladatTarolo<TesztFuggoFeladat>(10);
+            tarolo.BejaroFeltetel = (x => x.FuggosegTeljesul);
+            TesztFuggoFeladat a = new TesztFuggoFeladat("a") { Vegrehajthato = true };
+            TesztFuggoFeladat b = new TesztFuggoFeladat("b") { Vegrehajthato = true };
+            TesztFuggoFeladat c = new TesztFuggoFeladat("c") { Vegrehajthato = true };
+            tarolo.Felvesz(a);
+            tarolo.Felvesz(b);
+            tarolo.Felvesz(c);
+            string nevek = "";
+            foreach (TesztFeladat u in tarolo)
+            {
+                nevek += u.Azonosito;
+            }
+            Assert.AreEqual("abc", nevek);
+        }
     }
 }
