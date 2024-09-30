@@ -243,6 +243,10 @@ namespace OE.ALGA.Tesztek
             }
             Assert.AreEqual("acdb", osszefuzo);
             Assert.AreEqual("", uresosszefuzo);
+            Assert.AreEqual("a", l.Kiolvas(0));
+            Assert.AreEqual("c", l.Kiolvas(1));
+            Assert.AreEqual("d", l.Kiolvas(2));
+            Assert.AreEqual("b", l.Kiolvas(3));
         }
     }
 }

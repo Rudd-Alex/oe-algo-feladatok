@@ -157,7 +157,7 @@ namespace OE.ALGA.Adatszerkezetek
 
         public void Modosit(int index, T ertek)
         {
-            if (index < 0 || index > elemszam)
+            if (index < 0 || index >= elemszam)
                 throw new HibasIndexKivetel();
 
             LancElem<T> masol = fej;
