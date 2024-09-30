@@ -81,8 +81,8 @@ namespace OE.ALGA.Adatszerkezetek
 
             T ertek = E[e];
             e = (e + 1) % E.Length;
-            n--;
 
+            n--;
             return ertek;
         }
     }
