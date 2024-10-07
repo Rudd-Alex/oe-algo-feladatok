@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +24,7 @@ namespace OE.ALGA.Adatszerkezetek
         FaElem<T>? gyoker;
         public void Bejar(Action<T> muvelet)
         {
-            throw new NotImplementedException();
+            ReszfaBejarasPreOrder(gyoker, muvelet);
         }
 
         public void Beszur(T ertek)
@@ -43,7 +43,7 @@ namespace OE.ALGA.Adatszerkezetek
         }
         static FaElem<T> ReszfabaBeszur(FaElem<T>? p, T ertek)
         {
-            if (p == null)  
+            if (p == null)
                 return new FaElem<T>(ertek, null, null);
 
             if (p.tart.CompareTo(ertek) > 0)
@@ -78,12 +78,39 @@ namespace OE.ALGA.Adatszerkezetek
             else if (p.tart.CompareTo(ertek) > 0)
                 p.bal = ReszfabolTorol(p.bal, ertek);
             else if (p.bal == null)
-                p = p.bal;
-            else if (p.jobb == null)
                 p = p.jobb;
+            else if (p.jobb == null)
+                p = p.bal;
             else p.bal = KetGyerekesTorles(p, p.bal);
 
             return p;
+        }
+        void ReszfaBejarasPreOrder(FaElem<T>? p, Action<T> muvelet)
+        {
+            if (p == null)
+                return;
+
+            muvelet(p.tart);
+            ReszfaBejarasPreOrder(p.bal, muvelet);
+            ReszfaBejarasPreOrder(p.jobb, muvelet);
+        }
+        void ReszfaBejarasInOrder(FaElem<T>? p, Action<T> muvelet)
+        {
+            if (p == null)
+                return;
+
+            ReszfaBejarasPreOrder(p.bal, muvelet);
+            muvelet(p.tart);
+            ReszfaBejarasPreOrder(p.jobb, muvelet);
+        }
+        void ReszfaBejarasPostOrder(FaElem<T>? p, Action<T> muvelet)
+        {
+            if (p == null)
+                return;
+
+            ReszfaBejarasPreOrder(p.bal, muvelet);
+            ReszfaBejarasPreOrder(p.jobb, muvelet);
+            muvelet(p.tart);
         }
         static FaElem<T> KetGyerekesTorles(FaElem<T> e, FaElem<T>? r)
         {
